@@ -2,9 +2,12 @@ import { MoreVert, Phone } from "@mui/icons-material";
 import { Avatar, CardHeader, IconButton, Skeleton, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PostUserListItem({ id }) {
     const [userData, setUserData] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         //  Fetch User Data From user_id
@@ -24,8 +27,12 @@ function PostUserListItem({ id }) {
             <CardHeader
                 avatar={
                     userData ?
-                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"
+                        <Avatar sx={{ bgcolor: red[500], cursor: 'pointer' }} aria-label="recipe"
                             src={userData.photo}
+                            onClick={() => {
+                                navigate(`/feed/profile/${userData.id}`);
+                            }}
+
                         >
                             {userData.name[0].toUpperCase()}
                         </Avatar>
@@ -41,9 +48,13 @@ function PostUserListItem({ id }) {
                 }
                 title={
                     userData ?
-                        <>
+                        <Typography className="cursor-pointer inline-block"
+                            onClick={() => {
+                                navigate(`/feed/profile/${userData.id}`);
+                            }}
+                        >
                             {userData.name}
-                        </>
+                        </Typography>
                         :
                         <Skeleton variant="text" width={"100%"} height={20} />
                 }

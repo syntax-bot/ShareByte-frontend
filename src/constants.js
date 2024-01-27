@@ -1,4 +1,6 @@
 import logo from "/vite.svg";
+import food from "./assets/map/food.png"
+import circle from "./assets/map/circle.png"
 
 export const UserEnum = {
     INVALID: 0,
@@ -11,5 +13,7 @@ export const APP_NAME = 'shareBite';
 export const MAPS_API_KEY = 'AIzaSyD8sXtZcEFEWBoyxRIEhTaGkufK8J9LbTA';
 
 export const images = {
-    logo
+    logo,
+    circle,
+    food,
 };

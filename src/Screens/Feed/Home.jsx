@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLoader } from '../../Contexts/LoaderContext';
 import PostCard from '../../components/Posts/PostCard'
-import { Fab, Stack } from '@mui/material';
+import { Box, Fab, Stack } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
 
@@ -21,14 +21,23 @@ function Home() {
   const [postsData, setPostsData] = useState(null);
   const [loading, setLoading] = useLoader();
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [editInitialValues, setEditInitialValues] = useState(null);
+
+  const handleEditPost = (initialValues) => {
+    setOpen(true);
+    setEditInitialValues(initialValues);
+    console.log(initialValues);
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
+    setEditInitialValues(null);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setEditInitialValues(null);
   };
 
 
@@ -73,7 +82,7 @@ function Home() {
         },
         { // a record from database
           "id": 3,
-          "user_id": 1,
+          "user_id": 2,
           "title": "Feast In Munirka",
           "description": "Youre Invited to Come And Eat In Munirka in marriage aniversary since we have some excess food for 100 more people.",
           "images": [
@@ -93,9 +102,11 @@ function Home() {
 
   return (
     <Stack spacing={4} sx={{ position: 'relative' }}>
-      {postsData &&
-        postsData.map(data => <PostCard {...data} key={data.id} />)
-      }
+      <Box className="flex flex-col">
+        {postsData &&
+          postsData.map(data => <PostCard {...data} handleEdit={handleEditPost} key={data.id} />)
+        }
+      </Box>
       <Fab color="secondary" aria-label="edit"
         sx={{
           position: 'fixed',
@@ -117,7 +128,7 @@ function Home() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <CreatePostDialog handleClose={handleClose} />
+        <CreatePostDialog initialValues={editInitialValues} handleClose={handleClose} />
       </Dialog>
 
 

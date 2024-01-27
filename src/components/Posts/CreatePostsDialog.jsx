@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { AppBar, Box, Button, IconButton, Input, InputLabel, TextareaAutosize, Toolbar, Typography } from '@mui/material'
 import { Close, CloudUpload, DriveFileRenameOutline } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
@@ -8,12 +8,13 @@ import { APP_NAME } from '../../constants';
 import UploadImagesList from './UploadImageList';
 
 
-function CreatePostDialog({ handleClose }) {
+function CreatePostDialog({ initialValues, handleClose }) {
 
+    const submitButtonRef = useRef(null);
     // ---- Form Data ---------
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [images, setImages] = useState([]);
+    const [title, setTitle] = useState(initialValues ? (initialValues.title || '') : '');
+    const [description, setDescription] = useState(initialValues ? (initialValues.description || '') : '');
+    const [images, setImages] = useState(initialValues ? (initialValues.images || []) : []);
 
 
     const snackbar = useSnackbar();
@@ -27,7 +28,7 @@ function CreatePostDialog({ handleClose }) {
 
     const onFormSubmit = (e) => {
         e.preventDefault();
-
+        console.log('submit')
 
         snackbar.enqueueSnackbar("Please Wait while images are being uploaded...", { variant: "info" });
 
@@ -92,7 +93,9 @@ function CreatePostDialog({ handleClose }) {
                     <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
                         {APP_NAME}
                     </Typography>
-                    <Button autoFocus color="inherit" onClick={handleClose}>
+                    <Button autoFocus color="inherit" onClick={() => {
+                        submitButtonRef?.current?.click();
+                    }}>
                         save
                     </Button>
                 </Toolbar>
@@ -140,7 +143,7 @@ function CreatePostDialog({ handleClose }) {
 
                     <TextareaAutosize className='bg-inherit text-inherit shadow-md shadow-gray-700/50 min-w-[300px] my-20  px-8 py-4 rounded-lg' aria-label="minimum height" name="description" minRows={3} placeholder="Item Description" required value={description} onChange={(e) => setDescription(e.target.value)} />
 
-                    <Button varient="soft" type="submit" className="mt-10" color="primary"> Submit </Button>
+                    <Button ref={submitButtonRef} varient="soft" type="submit" className="mt-10" color="primary"> Submit </Button>
                 </Box>
 
             </form>
