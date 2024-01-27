@@ -1,11 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./hero.css";
 import { HiLocationMarker } from "react-icons/hi";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import { Search } from "@mui/icons-material";
 
+const placeholderData=["Pin","Your", "location", "here.",]
+
 const Hero = () => {
+
+  const [placeholder,setPlaceholder]=useState(0);
+    
+   let id=setInterval(()=>{
+    clearInterval(id);
+    if(placeholder==placeholderData.length){
+      setPlaceholder(0);
+    }
+    else{
+      setPlaceholder(placeholder+1);
+    }
+   },500);
+   
   return (
     <section className="hero-wrapper">
       <div className="paddings innerWidth flexCenter hero-container">
@@ -32,9 +47,9 @@ const Hero = () => {
 
           <div className="search-bar flex justify-center items-center gap-2 mx-auto">
             <HiLocationMarker color="var(--blue)" size={25}></HiLocationMarker>
-            <input type="text" style={{ color: 'var(--blue)', width: '100%', maxWidth: 200 }} />
+            <input type="text" style={{ color: 'var(--blue)', width: '100%', maxWidth: 200 }} placeholder={placeholderData[placeholder]}/>
             <button className="button">
-              <span className="hidden md:inline">Search</span>
+              <span className="hidden md:inline">Pin</span>
               <span className="md:hidden"><Search /></span>
             </button>
           </div>

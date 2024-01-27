@@ -10,8 +10,8 @@ const Contact = () => {
             <div className="paddings innerWidth flexCenter c-container">
                 {/* left side */}
                 <div className="flexColStart c-left">
-                    <span className='orangeText'>Our Contacts</span>
-                    <span className='primaryText'>Easy to Contact us</span>
+                    <span className='orangeText'>Like The Idea ?</span>
+                    <span className='primaryText'>Join Us</span>
                     <span className='secondaryText'>
                         You can reach out to us by following means:
                     </span>
@@ -27,7 +27,7 @@ const Contact = () => {
                                     </div>
                                     <div className="flexColStart detail">
                                         <span className='primaryText'>Call</span>
-                                        <span className='secondaryText'>021 123 145 14</span>
+                                        <span className='secondaryText'>+011 2553 2553</span>
                                     </div>
                                 </div>
                                 <div className="flexCenter button">Call Now</div>
@@ -41,7 +41,7 @@ const Contact = () => {
                                     </div>
                                     <div className="flexColStart detail">
                                         <span className='primaryText'>Chat</span>
-                                        <span className='secondaryText'>021 123 145 14</span>
+                                        <span className='secondaryText'>Linkdin</span>
                                     </div>
                                 </div>
                                 <div className="flexCenter button">Chat Now</div>

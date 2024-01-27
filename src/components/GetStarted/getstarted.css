@@ -22,3 +22,6 @@
     box-shadow: var(--shadow);
     border-radius: 10px;
 }
+.getStartedBtn:hover{
+    background-color:rgb(19, 17, 16);
+}
