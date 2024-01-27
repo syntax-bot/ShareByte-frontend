@@ -4,23 +4,10 @@ import "./aboutpage.css";
 import Footer from "../../components/Footer/Footer.jsx";
 import teamMembers from "./teamMember.json";
 import sliderData from "./sliderData.json";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
-const SliderButtons = () => {
-  const swiper = useSwiper();
-  return (
-    <div className="swiper-navigation">
-      <button className="swiper-btn" onClick={() => swiper.slidePrev()}>
-        Prev
-      </button>
-      <button className="swiper-btn" onClick={() => swiper.slideNext()}>
-        Next
-      </button>
-    </div>
-  );
-};
 
 const AboutPage = () => {
   return (
@@ -59,12 +46,12 @@ const AboutPage = () => {
       <br /> <br />
       {/* Swiper Slider Section */}
       <Swiper
-        modules={[Navigation]}
+        modules={[Navigation,Autoplay]}
         spaceBetween={10}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }} // Adjust the delay as needed (5000 milliseconds = 5 seconds)
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
         onSwiper={(swiper) => (window.swiper = swiper)}
         className="mySwiper"
       >

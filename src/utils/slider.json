@@ -1,38 +1,38 @@
 [
   {
-    "name": "Aliva Priva Jardin",
-    "price": "47,043",
-    "detail": "Jakarta Garden City Street, Cakung. Pulo Gadung, Jakarta Timur, DKI Jakarta",
-    "image": "./r1.png"
+    "name": "Times of India (food wastage in India)",
+    "link": "https://timesofindia.indiatimes.com/india/74-million-tonnes-of-food-amounting-to-22-of-foodgrain-output-wasted-in-india-every-year/articleshow/104875206.cms?from=mdr",
+    "detail": "74 million tonnes of food amounting to 22% of foodgrain output wasted in India every year. Readmore...",
+    "image": "./slider10.jpg"
   },
   {
-    "name": "Asatti Garden City",
-    "price": "66,353",
-    "detail": "Pahlawan Street XVII No.215, Cinangka, Sawangan, Depok, Jawa Barat",
-    "image": "./r2.png"
+    "name": "Farm Crisis in India",
+    "link": "https://timesofindia.indiatimes.com/spotlight/food-waste-crisis-in-india-why-it-is-crucial-to-put-farm-and-food-waste-to-use/articleshow/97085648.cms",
+    "detail": "Farmers reluctant due to low income, debt burden, and uncertain weather conditions, contributing to India's farming crisis. Readmore...",
+    "image": "./slider1.jpg"
   },
   {
-    "name": "Citralan Puri Serang",
-    "price": "35,853",
-    "detail": "Ruko Puri Indah Residence Block A7, Lingkar Street, Ciracas, Serang, Banten",
-    "image": "./r3.png"
+    "name": "Delhi ready to stop big, fat weddings",
+    "link": "https://timesofindia.indiatimes.com/city/delhi/delhi-ready-to-stop-big-fat-weddings/articleshow/70210993.cms",
+    "detail": "Wedding food wastage in India is a pressing issue, with extravagant feasts often leading to excessive leftovers. Readmore...",
+    "image": "./wedding.jpg"
   },
   {
-    "name": "Aliva Priva Jardin",
-    "price": "47,043",
-    "detail": "Jakarta Garden City Street, Cakung. Pulo Gadung, Jakarta Timur, DKI Jakarta",
-    "image": "./r1.png"
+    "name": "Shocking!! 1/3 of food produced in world is wasted !!",
+    "link": "https://easternmirrornagaland.com/food-wastage-in-india-a-concern/",
+    "detail": "82% of hungry people live in countries with food surpluses, not food shortages. Readmore...",
+    "image": "./slider2.jpg"
   },
   {
-    "name": "Asatti Garden City",
-    "price": "66,353",
-    "detail": "Pahlawan Street XVII No.215, Cinangka, Sawangan, Depok, Jawa Barat",
-    "image": "./r2.png"
+    "name": "Death by hunger is India’s tragic reality",
+    "link": "https://www.hindustantimes.com/columns/death-by-hunger-is-india-s-tragic-reality/story-5lNVR6Q2LXXjEsQrnIeGdL.html",
+    "detail": "It is pertinent to realise that 34 out of 1,000 children born in the country die in the mother’s womb itself. Readmore...",
+    "image": "./death.jpg"
   },
   {
-    "name": "Citralan Puri Serang",
-    "price": "35,853",
-    "detail": "Ruko Puri Indah Residence Block A7, Lingkar Street, Ciracas, Serang, Banten",
-    "image": "./r3.png"
+    "name": "How reducing food waste can play a role in ending hunger",
+    "link": "https://www.feedingindia.org/blog/how-reducing-food-waste-can-play-a-role-in-ending-hunger/",
+    "detail": "While nearly 195 million people in India go to bed hungry every day, an estimated 40% of all food produced goes to waste each year. Readmore...",
+    "image": "./slider3.jpg"
   }
 ]
