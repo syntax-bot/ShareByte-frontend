@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "hamburgers";
 @import './variable.css';
 
 body {

@@ -1,4 +1,4 @@
-import logo from "/vite.svg";
+
 import food from "./assets/map/food.png"
 import circle from "./assets/map/circle.png"
 import { Glue } from "./Api/Glue";
@@ -20,7 +20,6 @@ export const report_bugs_to = 'webmaster@sharebyte.com'
 export const error_report_message = `Something Went Wrong Please Report This issue At ${report_bugs_to} With Screenshots`
 
 export const images = {
-    logo,
     circle,
     food,
 };

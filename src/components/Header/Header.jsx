@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./header.css";
-import { NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { BiMenuAltRight } from 'react-icons/bi';
 import OutSideClickHandler from 'react-outside-click-handler';
 import { Close } from '@mui/icons-material';
@@ -33,13 +33,13 @@ const Header = () => {
                         </button>
                     </div>
                 </OutSideClickHandler>
-                <button className="menu-icon" style={{ zIndex: 1000 }} onClick={() => setmenuOpened(!menuOpened)}>
+                <div className="menu-icon" onClick={() => setmenuOpened(!menuOpened)}>
                     {menuOpened ?
                         <Close />
                         :
                         <BiMenuAltRight size={30}></BiMenuAltRight>
                     }
-                </button>
+                </div>
             </div>
         </section>
     )
