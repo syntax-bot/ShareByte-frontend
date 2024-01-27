@@ -1,10 +1,12 @@
-import { Avatar, Card, CardActions, CardContent, CardHeader, Collapse, IconButton, Skeleton, Stack, Typography } from '@mui/material';
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Collapse, Divider, IconButton, Skeleton, Stack, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { red } from '@mui/material/colors';
-import { Favorite, KeyboardArrowDown, MoreVert, Share } from '@mui/icons-material';
+import { BackHand, DoNotTouch, Fastfood, Favorite, KeyboardArrowDown, MoreVert, NoFood, Share } from '@mui/icons-material';
 import PostImages from './PostImages';
 import PostMap from './PostMap';
+import { useLogin } from '../../Contexts/LoginContext';
+import PostUserList from './PostUserList';
 
 
 const ExpandMore = styled((props) => {
@@ -65,7 +67,7 @@ function PostHeader({ user_id, createdAt }) {
                         {userData.name}
                     </>
                     :
-                    <Skeleton varient="text" width={"100%"} height={20} />
+                    <Skeleton variant="text" width={"100%"} height={20} />
             }
             subheader={
                 userData ?
@@ -96,9 +98,26 @@ function PostCard({
 }) {
     const [expanded, setExpanded] = useState(false);
 
+    const [loginData] = useLogin();
+    const [isNeedy, setIsNeedy] = useState(needys_user_id && needys_user_id.includes(loginData?.id));
+    const [isHelper, setIsHelper] = useState(helpers_user_id && helpers_user_id.includes(loginData?.id));
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+
+    const addOrRemoveFromNeedy = () => {
+        setIsNeedy(!isNeedy);
+        const method = isNeedy ? 'DELETE' : 'GET';
+        console.log(method);
+    }
+    const addOrRemoveFromHelper = () => {
+        setIsHelper(!isHelper);
+        const method = isHelper ? 'DELETE' : 'GET';
+        console.log(method);
+    }
+
 
     return (
         <Card style={{ margin: '10px 25px' }}>
@@ -120,9 +139,39 @@ function PostCard({
             </CardContent >
 
             <CardActions disableSpacing>
-                <IconButton aria-label="add me as hungry">
-                    <Favorite />
-                </IconButton>
+                <Button aria-label="add me as hungry"
+                    startIcon={
+                        isNeedy ?
+                            <NoFood />
+                            :
+                            <Fastfood />
+                    }
+                    onClick={addOrRemoveFromNeedy}
+                >
+                    {isNeedy
+                        ?
+                        "Remove Me From Needy"
+                        :
+                        "Add Me As Needy"
+                    }
+                </Button>
+
+                <Button aria-label="add me as hungry"
+                    startIcon={
+                        isHelper ?
+                            <DoNotTouch />
+                            :
+                            <BackHand />
+                    }
+                    onClick={addOrRemoveFromHelper}
+                >
+                    {isHelper
+                        ?
+                        "Remove Me From Helper"
+                        :
+                        "Add Me As Helper"
+                    }
+                </Button>
 
                 <ExpandMore
                     expand={expanded}
@@ -133,15 +182,20 @@ function PostCard({
                     <KeyboardArrowDown />
                 </ExpandMore>
             </CardActions>
+            
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography paragraph>Location Map:</Typography>
 
                     <PostMap id={id} location_lat={location_lat} location_long={location_long} />
-                    
 
-                    {/* List of helpers HERE*/}
-                    {/* List of needys HERE*/}
+                    <Divider />
+
+
+                    <PostUserList ids={needys_user_id} text={`Needys (${needys_user_id.length})`}/>
+
+                    <PostUserList ids={helpers_user_id} text={`Helpers (${helpers_user_id.length})`}/>
+
                 </CardContent>
             </Collapse>
         </Card >

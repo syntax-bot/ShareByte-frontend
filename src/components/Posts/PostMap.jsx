@@ -18,7 +18,7 @@ const PostMap = ({ location_lat, location_long }) => {
     }
 
     return (
-        <Box>
+        <Box sx={{ mb: 2 }}>
             <Box sx={{ mb: 1 }}>
                 {isLoaded ?
                     <GoogleMap
