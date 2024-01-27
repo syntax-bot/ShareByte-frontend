@@ -1,36 +1,36 @@
 [
     {
-      "image": "https://placekitten.com/250/250?image=1",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "image": "./slider1.jpg",
+      "description": "Hunger kills more people each year than AIDS, malaria and terrorism combined. Over 820 million people worldwide suffer from hunger, according to the Food and Agriculture Organization of the United Nations (FAO)."
     },
     {
-      "image": "https://placekitten.com/250/250?image=2",
-      "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "image": "./slider2.jpg",
+      "description": "Every 10 seconnds, a child dies from hunger"
     },
     {
-      "image": "https://placekitten.com/250/250?image=3",
-      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "image": "./slider3.jpg",
+      "description": "82% of hungry people live in countries with food surpluses, not food shortages"
     },
     {
-      "image": "https://placekitten.com/250/250?image=4",
-      "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      "image": "./slider4.jpg",
+      "description": "One in every eight people sleeps hungry each night"
     },
     {
-      "image": "https://placekitten.com/250/250?image=5",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "image": "./slider5.jpg",
+      "description": "One third of the food produced around the world is never consumed"
     },
     {
 
-      "image": "https://placekitten.com/250/250?image=6",
-      "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      "image": "./slider6.jpg",
+      "description": "850 million hungry people in world"
     },
     {
-      "image": "https://placekitten.com/250/250?image=7",
-      "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "image": "./slider7.jpg",
+      "description": "Sustainable development goals, such as zero hunger and no poverty, aim to address the root causes of hunger, poverty, and food wastage through collaborative efforts at the global, national, and local levels."
     },
     {
-      "image": "https://placekitten.com/250/250?image=8",
-      "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      "image": "./slider8.jpg",
+      "description": "Hunger and poverty disproportionately affect women and children, who often bear the brunt of food insecurity's consequences."
     }
   ]
   
