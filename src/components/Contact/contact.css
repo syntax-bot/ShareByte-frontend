@@ -9,7 +9,9 @@
 .c-right{
     width: 100%;
 }
-
+.c-right .image-container{
+    float:right;
+}
 .c-left{
     gap: 0.5rem;
 }
@@ -67,6 +69,8 @@
     }
 
     .c-right{
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 
