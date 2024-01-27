@@ -1,8 +1,5 @@
 /** @jsxImportSource @emotion/react  */
-
 import { useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-
 import Layout from "./Layout";
 import Feed from "./Screens/Feed/Home";
 import Profile from "./Screens/Feed/Profile";
@@ -17,6 +14,7 @@ import { SnackbarProvider } from "notistack";
 import { useLogin } from "./Contexts/LoginContext";
 import { api_glue } from "./constants";
 import LoginAutoRouter from "./LoginAutoRouter";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 // import { UserEnum } from "./constants";
 
