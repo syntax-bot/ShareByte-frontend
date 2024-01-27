@@ -1,0 +1,31 @@
+[
+    {
+      "id": 1,
+      "name": "Gaurav Prakash",
+      "github": "https://github.com/chamoli2k2",
+      "description": "Jawaharlal Nehru University, Btech-CSE 3rd year",
+      "image": "./Gaurav.png"
+    },
+    {
+      "id": 2,
+      "name": "Shobhit Chaudhary",
+      "github": "https://github.com/Shobhit043",
+      "description": "Jawaharlal Nehru University, Btech-CSE 3rd year",
+      "image": "./Shobhit.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Prashanth Kumar",
+      "github": "https://github.com/PrashanthKumar0",
+      "description": "Jawaharlal Nehru University, Btech-CSE 2nd year",
+      "image": "./Prashanth.png"
+    },
+    {
+      "id": 4,
+      "name": "Harsh Gupta",
+      "github": "https://github.com/syntax-bot",
+      "description": "Jawaharlal Nehru University, Btech-ECE 3rd year",
+      "image": "./Harsh.png"
+    }
+  ]
+  

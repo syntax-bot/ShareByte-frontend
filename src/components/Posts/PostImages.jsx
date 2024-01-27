@@ -7,9 +7,10 @@ const PostImages = ({ images, alt }) => {
         <ImageList sx={{ width: '100%', padding: 1 }} variant="quilted" cols={2} gap={4}>
 
             {
-                images.map((image,idx) => (
+                images.map((image, idx) => (
                     <ImageListItem key={image}>
                         <img
+                            className="rounded-lg"
                             src={`${image}`}
                             alt={alt}
                             loading="lazy"
@@ -20,7 +21,7 @@ const PostImages = ({ images, alt }) => {
         </ImageList>
         :
         <CardMedia
-            sx={{ padding: 1 }}
+            sx={{ padding: 1, borderRadius: 6 }}
             component="img"
             // height="194"
             width="100%"

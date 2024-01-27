@@ -1,82 +1,84 @@
 /** @jsxImportSource @emotion/react  */
 
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import Layout from "./Layout";
-import MainHome from "./Screens/MainHome/Home";
 import Feed from "./Screens/Feed/Home";
-import Dashboard from "./Screens/Feed/Profile";
+import Profile from "./Screens/Feed/Profile";
 import { useLoader } from "./Contexts/LoaderContext";
-import { useTheme } from "./Contexts/ThemeContext";
-import About from "./Screens/MainHome/About";
-import NavBar from "./components/Navbars/NavBar";
-import { LoginProvider } from "./Contexts/LoginContext";
+import DynamicProfile from "./Screens/Feed/DynamicProfile";
+import FoodMap from "./Screens/Feed/FoodMap";
+import HomePage from "./Screens/HomePage/HomePage";
+import SignupPage from "./Screens/SignupPage/SignupPage";
+import SigninPage from "./Screens/SigninPage/SigninPage";
+import AboutPage from "./Screens/AboutPage/AboutPage";
+import { SnackbarProvider } from "notistack";
+import { useLogin } from "./Contexts/LoginContext";
+import { api_glue } from "./constants";
+import LoginAutoRouter from "./LoginAutoRouter";
+
 // import { UserEnum } from "./constants";
 
 export default function App() {
-  // const [loggedinAs, setLoggedinAs] = useState(UserEnum.INVALID);
-  let [loggedIn, setLoggedIn] = useState(localStorage.getItem("auth") || false);
 
   const [loading, setLoading] = useLoader();
-  const [theme, setTheme] = useTheme();
+  const [loginData, setLoginData] = useLogin();
 
   useEffect(() => {
-    // emulate delay to check if user is logged in
-    // we will check from cookie
-    console.warn("Loader From App.jsx");
-    setTimeout(() => {
-      setLoading(false);
-    }, 300);
+    api_glue.check_login() // handles by fetching from stored publlic cookie
+      .then(login => {
+        if (login) { // if user is logged in we set loginData
+          setLoginData(login);
+        } else {
+          setLoginData(null);
+        }
+      })
+      .catch(err => {
+        setLoginData(null);
+        console.log('app.jsx', err);
+      })
+      .finally(e => {
+        setLoading(false);
+      });
   }, []);
 
   return (
-    // MuiThemeProvider
-    <ThemeProvider
-      theme={createTheme({
-        palette: {
-          mode: theme,
-        },
-      })}
-    >
-      <CssBaseline>
-        <BrowserRouter>
-          <Routes>
-            <Route path={"/"}>
-              <Route
-                index
-                element={
-                  <>
-                    <NavBar />
-                    <MainHome />
-                  </>
-                }
-              />
-              <Route
-                path="about"
-                element={
-                  <>
-                    <NavBar />
-                    <About />
-                  </>
-                }
-              />
-            </Route>
+    <BrowserRouter>
+      <Routes>
 
+        <Route path={"/"} element={<LoginAutoRouter />}>
+          <Route index path="/" element={<HomePage />} />
 
-            <Route path={"/feed"} element={
-              <LoginProvider>
-                <Layout />
-              </LoginProvider>
-            }>
-              <Route index element={<Feed />} />
-              <Route path="profile" element={<Dashboard />} />
-            </Route>
+          <Route path="/signup" element={
+            <SnackbarProvider>
+              <SignupPage />
+            </SnackbarProvider>
+          }
+          />
 
-          </Routes>
-        </BrowserRouter>
-      </CssBaseline>
-    </ThemeProvider>
+          <Route path="/signin" element={
+            <SnackbarProvider>
+              <SigninPage />
+            </SnackbarProvider>
+          } />
+
+          <Route path="/about" element={<AboutPage />} />
+
+          {/* Dashboard page should be done by harsh */}
+          {/* <Route path="/profile" element={<DashboardPage />} /> */}
+        </Route>
+
+        <Route path={"/feed"} element={
+          <Layout />
+        }>
+          <Route index element={<Feed />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="profile/:id" element={<DynamicProfile />} />
+          <Route path="map" element={<FoodMap />} />
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
   );
 }
