@@ -1,3 +1,5 @@
+import { is } from "@react-spring/shared";
+
 export class Glue {
     #api_url_base = '';
     #default_json_header = { 'content-type': 'application/json' };
@@ -24,9 +26,8 @@ export class Glue {
             const is_logged_filtered = document.cookie
                 .split(';')
                 .map(cookie => cookie.split('='))
-                .filter(([key, val]) => key == 'profile_json')
+                .filter(([key, val]) => (key.trim() == 'profile_json'))
                 .map(([k, v]) => [k, JSON.parse(decodeURIComponent(v))]);
-
             if (is_logged_filtered.length <= 0) {
                 return false;
             }
