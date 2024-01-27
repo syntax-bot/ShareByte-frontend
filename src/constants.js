@@ -1,3 +1,5 @@
+import logo from "/vite.svg";
+
 export const UserEnum = {
     INVALID: 0,
     FEEDER: 1,
@@ -6,3 +8,7 @@ export const UserEnum = {
 };
 
 export const APP_NAME = 'shareBite';
+
+export const images = {
+    logo
+};
