@@ -8,7 +8,7 @@ import { ArrowBack, Chat, Fastfood, Menu, Nightlight, Settings, WbSunny } from '
 
 import { Themes, useTheme } from './Contexts/ThemeContext';
 import { useLoader } from './Contexts/LoaderContext';
-import { APP_NAME, images } from './constants';
+import { APP_NAME } from './constants';
 import { useLogin } from './Contexts/LoginContext';
 
 function Layout() {

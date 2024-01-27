@@ -8,7 +8,7 @@ export const Themes = {
 }
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState(Themes.light);
+    const [theme, setTheme] = useState(Themes.dark);
 
     return (
         <ThemeContext.Provider value={[theme, setTheme]}>
