@@ -26,7 +26,7 @@ const SignupPage = () => {
         // Redirect the user to the home page
         navigate('/signin');
       } else {
-        snackbar.enqueueSnackbar({ message: res.message, variant: res.status })
+        snackbar.enqueueSnackbar({ message: res.data.message, variant: res.status })
       }
     }).catch(err => {
       console.log(err);
