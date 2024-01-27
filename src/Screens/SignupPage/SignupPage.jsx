@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./signuppage.css";
 import { Avatar, InputLabel } from "@mui/material";
-import { Image } from "@mui/icons-material";
+import { CameraAlt, Circle, Image, Photo } from "@mui/icons-material";
 import { useSnackbar } from "notistack";
 import { api_glue, error_report_message, report_bugs_to } from "../../constants";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const SignupPage = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [photo, setPhoto] = useState(null);
-  const [bio, setBio] = useState("");
+  // const [bio, setBio] = useState("");
 
   const snackbar = useSnackbar();
   const navigate = useNavigate();
@@ -77,9 +77,9 @@ const SignupPage = () => {
         <InputLabel>
           {
             photo ?
-              <Avatar src={URL.createObjectURL(photo)} className="m-auto" />
+              <Avatar src={URL.createObjectURL(photo)} className="m-auto" sx={{ width: 100, height: 100 }} />
               :
-              <Image />
+              <CameraAlt sx={{ width: 100, height: 100 }} />
           }
 
           <input
@@ -128,13 +128,12 @@ const SignupPage = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
         <textarea
-          value={bio}
-          onChange={setBio}
           name="bio"
           placeholder="Write a short bio..."
           rows="4" // You can adjust the number of visible rows
         />
         <button type="submit">Sign up</button>
+        <p>Already a user? <a href="/signin">Sign in</a></p>
       </form>
     </div>
   );

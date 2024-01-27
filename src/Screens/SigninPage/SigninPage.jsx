@@ -1,5 +1,6 @@
 // SignUpPage.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./signinpage.css";
 import { api_glue, error_report_message } from "../../constants";
 import { useSnackbar } from "notistack";
@@ -60,6 +61,10 @@ const SigninPage = () => {
           onChange={(event) => setPassword(event.target.value)}
         />
         <button type="submit">Sign in</button>
+        <p>
+          Don't have an account?{" "}
+          <Link to="/signup">Sign up</Link>
+        </p>
       </form>
     </div>
   );

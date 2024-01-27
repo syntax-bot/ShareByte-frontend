@@ -4,7 +4,6 @@
   --form-background: var(--secondary);
   --form-shadow: var(--shadow);
   --form-border: 1px solid var(--blue);
-
   background-color: var(--black);
   display: flex;
   justify-content: center;
@@ -18,7 +17,7 @@
   border: var(--form-border);
   border-radius: 8px;
   padding: 20px;
-  width: 350px; /* Adjust the width to your preference */
+  width: 400px; /* Adjust the width to your preference */
   text-align: center;
 }
 
@@ -38,7 +37,7 @@
 }
 
 .signup-form textarea {
-  resize: vertical; /* Allow vertical resizing of the textarea */
+  resize: vertical;
 }
 
 .signup-form button {
@@ -49,9 +48,31 @@
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
-  margin-top: 10px; /* Add some space between the textarea and the button */
+  margin-top: 10px;
 }
 
 .signup-form button:hover {
   transform: scale(1.1);
+}
+
+.signup-form p {
+  margin-top: 15px;
+  color: #777;
+}
+
+.signup-form a {
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-form a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .signup-form {
+    width: 90%; /* Adjust width for smaller screens */
+  }
 }
