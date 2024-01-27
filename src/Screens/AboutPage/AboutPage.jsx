@@ -4,6 +4,7 @@ import "./aboutpage.css";
 import Footer from "../../components/Footer/Footer.jsx";
 import teamMembers from "./teamMember.json";
 import sliderData from "./sliderData.json";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
@@ -56,9 +57,9 @@ const AboutPage = () => {
         </p>
       </div>
       <br /> <br />
-
       {/* Swiper Slider Section */}
       <Swiper
+        modules={[Navigation]}
         spaceBetween={10}
         slidesPerView={1}
         navigation
@@ -69,7 +70,7 @@ const AboutPage = () => {
       >
         {sliderData.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="swiper-card">
+            <div className="swiper-card flex items-center justify-center flex-col gap-2">
               <img
                 src={slide.image}
                 alt={`Slide ${slide.id}`}

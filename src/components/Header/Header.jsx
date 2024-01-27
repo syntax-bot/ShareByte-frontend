@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./header.css";
-import { NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import { BiMenuAltRight } from 'react-icons/bi';
 import OutSideClickHandler from 'react-outside-click-handler';
 import { Close } from '@mui/icons-material';
@@ -25,7 +25,7 @@ const Header = () => {
                         <NavLink to="/">Home</NavLink>
                         <NavLink to="/about">About</NavLink>
                         <NavLink to="/signup">Sign up</NavLink>
-                        <NavLink to="/signup">Sign in</NavLink>
+                        <NavLink to="/signin">Sign in</NavLink>
                         <button className='button '>
                             <NavLink href='/feed'>
                                 Get Started
@@ -33,13 +33,13 @@ const Header = () => {
                         </button>
                     </div>
                 </OutSideClickHandler>
-                <button className="menu-icon" style={{ zIndex: 1000 }} onClick={() => setmenuOpened(!menuOpened)}>
+                <div className="menu-icon" onClick={() => setmenuOpened(!menuOpened)}>
                     {menuOpened ?
                         <Close />
                         :
                         <BiMenuAltRight size={30}></BiMenuAltRight>
                     }
-                </button>
+                </div>
             </div>
         </section>
     )
