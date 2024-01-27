@@ -3,6 +3,7 @@ import { Avatar, CardHeader, IconButton, Skeleton, Typography } from "@mui/mater
 import { red } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api_glue } from "../../constants";
 
 function PostUserListItem({ id }) {
     const [userData, setUserData] = useState(null);
@@ -10,16 +11,13 @@ function PostUserListItem({ id }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        //  Fetch User Data From user_id
-        setTimeout(() => { // emulate delay
-            setUserData({
-                "id": 1,
-                "name": "Prashanth Kumar",
-                "phone": "+91828382838",
-                "photo": "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=242&h=242&fit=crop&auto=format",
-                "bio": "A user from stonage"
-            });
-        }, 3000);
+        api_glue
+            .get_profile_by_id(id)
+            .then(res => {
+                if (res.status == 'success') {
+                    setUserData(res.data);
+                }
+            })
     }, [])
 
     return (

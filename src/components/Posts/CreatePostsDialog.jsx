@@ -4,11 +4,11 @@ import { Close, CloudUpload, DriveFileRenameOutline } from '@mui/icons-material'
 import { useSnackbar } from 'notistack';
 
 
-import { APP_NAME } from '../../constants';
+import { APP_NAME, api_glue, error_report_message } from '../../constants';
 import UploadImagesList from './UploadImageList';
 
 
-function CreatePostDialog({ initialValues, handleClose }) {
+function CreatePostDialog({ initialValues, handleClose, refetchPosts }) {
 
     const submitButtonRef = useRef(null);
     // ---- Form Data ---------
@@ -28,17 +28,47 @@ function CreatePostDialog({ initialValues, handleClose }) {
 
     const onFormSubmit = (e) => {
         e.preventDefault();
-        console.log('submit')
 
         snackbar.enqueueSnackbar("Please Wait while images are being uploaded...", { variant: "info" });
 
         const formData = new FormData(e.target);
 
-        setTimeout(() => {
-            snackbar.enqueueSnackbar("Uploaded...", { variant: "success" });
-            setTimeout(handleClose, 1000);
-        }, 3000);
-        // console.log();
+        // call api
+        if (initialValues) {
+            // update post
+            api_glue
+                .edit_post(initialValues.id, formData)
+                .then(res => {
+                    if (res.status == 'success') {
+                        snackbar.enqueueSnackbar("Post Updated", { variant: "success" });
+                        refetchPosts();
+                    } else {
+                        snackbar.enqueueSnackbar(res.data.message, { variant: res.status });
+                    }
+                    handleClose();
+                }).catch(err => {
+                    console.log(err);
+                    snackbar.enqueueSnackbar(error_report_message, { variant: "error" });
+                    handleClose();
+                });
+
+        } else {
+            api_glue
+                .create_post(formData)
+                .then(res => {
+                    if (res.status == 'success') {
+                        snackbar.enqueueSnackbar("Post Uploaded", { variant: "success" });
+                        refetchPosts();
+                    } else {
+                        snackbar.enqueueSnackbar(res.data.message, { variant: res.status });
+                    }
+                    handleClose();
+                }).catch(err => {
+                    console.log(err);
+                    snackbar.enqueueSnackbar(error_report_message, { variant: "error" });
+                    handleClose();
+                });
+        }
     };
 
 

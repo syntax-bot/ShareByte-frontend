@@ -4,12 +4,15 @@ import "./signinpage.css";
 import { api_glue, error_report_message } from "../../constants";
 import { useSnackbar } from "notistack";
 import { useLogin } from "../../Contexts/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 const SigninPage = () => {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loginData, setLoginData] = useLogin();
   const snackbar = useSnackbar();
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +26,9 @@ const SigninPage = () => {
           .then(login_data => {
             if (login_data) {
               snackbar.enqueueSnackbar({ message: 'logged in successfully please wait while we redirect you', variant: login.status });
-              setLoginData(login_data); // this will redirect automatically
+              setLoginData(login_data);
+              //  redirect user
+              navigate('/feed');
             }
           }).catch(err => {
             snackbar.enqueueSnackbar({ message: error_report_message, variant: 'error' })

@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { AppBar, Avatar, Badge, Box, Button, Fab, Icon, IconButton, Input, InputLabel, TextareaAutosize, Toolbar, Typography } from '@mui/material'
-import { Circle, Close, CloudUpload, DriveFileRenameOutline, Edit } from '@mui/icons-material';
+import { AppBar, Avatar, Badge, Box, Button, IconButton, Input, InputLabel, TextareaAutosize, Toolbar, Typography } from '@mui/material'
+import { Close,  DriveFileRenameOutline, Edit } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
 
 
-import { APP_NAME } from '../constants';
+import { api_glue, APP_NAME } from '../constants';
 import { useLogin } from '../Contexts/LoginContext';
 
 
 function EditUserProfileDialog({ handleClose }) {
 
     const snackbar = useSnackbar();
-    const [loginData] = useLogin();
+    const [loginData, setLoginData] = useLogin();
     const formButtonRef = useRef(null);
 
     // ---- Form Data ---------
@@ -35,14 +35,27 @@ function EditUserProfileDialog({ handleClose }) {
         e.preventDefault();
 
 
-        snackbar.enqueueSnackbar("Please Wait while images are being uploaded...", { variant: "info" });
+        snackbar.enqueueSnackbar("Please Wait...", { variant: "info" });
 
         const formData = new FormData(e.target);
-
-        setTimeout(() => {
-            snackbar.enqueueSnackbar("Uploaded...", { variant: "success" });
-            setTimeout(handleClose, 1000);
-        }, 3000);
+        api_glue.edit_user(formData).then(res => {
+            if (res.status == 'success') {
+                // set new data to loginData
+                api_glue.get_me()
+                    .then(me => {
+                        console.log(me);
+                        if (me.status == 'success') {
+                            snackbar.enqueueSnackbar("Profile Updated Successfully", { variant: "success" });
+                            setLoginData(me.data);
+                            handleClose();
+                        }
+                    });
+            }
+        });
+        // setTimeout(() => {
+        //     snackbar.enqueueSnackbar("Uploaded...", { variant: "success" });
+        //     setTimeout(handleClose, 1000);
+        // }, 3000);
         // console.log();
     };
 

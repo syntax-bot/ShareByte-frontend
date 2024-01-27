@@ -16,6 +16,7 @@ import AboutPage from "./Screens/AboutPage/AboutPage";
 import { SnackbarProvider } from "notistack";
 import { useLogin } from "./Contexts/LoginContext";
 import { api_glue } from "./constants";
+import LoginAutoRouter from "./LoginAutoRouter";
 
 // import { UserEnum } from "./constants";
 
@@ -46,7 +47,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
 
-        <Route path={"/"}>
+        <Route path={"/"} element={<LoginAutoRouter />}>
           <Route index path="/" element={<HomePage />} />
 
           <Route path="/signup" element={

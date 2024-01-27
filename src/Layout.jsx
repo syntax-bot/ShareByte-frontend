@@ -3,14 +3,14 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import FullSizeLoader from './components/FullSizeLoader';
-import { AppBar, Box, Card, CardContent, CardMedia, CssBaseline, Divider, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Skeleton, Stack, ThemeProvider, Toolbar, Typography, createTheme, css } from '@mui/material';
+import { AppBar, Avatar, Box, Card, CardContent, CardMedia, CssBaseline, Divider, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Skeleton, Stack, ThemeProvider, Toolbar, Typography, createTheme, css } from '@mui/material';
 import { ArrowBack, Chat, Fastfood, LocationCity, Menu, Nightlight, PinDrop, Settings, WbSunny } from '@mui/icons-material';
 
 import { Themes, useTheme } from './Contexts/ThemeContext';
 import { useLoader } from './Contexts/LoaderContext';
-import { APP_NAME } from './constants';
+import { APP_NAME, api_glue } from './constants';
 import { useLogin } from './Contexts/LoginContext';
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 
 function Layout() {
     const [loading, setLoading] = useLoader();
@@ -22,19 +22,24 @@ function Layout() {
 
     const [LoginDetails, setLoginDetails] = useLogin();
 
+    const snackbar = useSnackbar();
+
     useEffect(() => {
         // From Api
-        setTimeout(() => {
-            setLoginDetails({
-                id: 1,
-                name: 'My Name',
-                photo: '/banners/banner1.jpg',
-                phone: '+918667836256',
-                bio: 'My Bio Here',
-                location_lat: 28.546714,
-                location_long: 77.165102,
+        if (!(LoginDetails && LoginDetails.location_lat)) {
+            api_glue.get_me().then(me => {
+                if (me.status == 'success') {
+                    setLoginDetails(me.data);
+
+                } else {
+                    snackbar.enqueueSnackbar({ message: 'You\'re not logged in ', variant: 'warning' });
+                    navigate('/signin');
+                }
+            }).catch(err => {
+                snackbar.enqueueSnackbar({ message: 'You\'re not logged in ', variant: 'error' });
+                navigate('/');
             });
-        }, 3000);
+        }
     }, [])
 
     const handleToggleDrawer = () => {
@@ -122,10 +127,10 @@ function Layout() {
                             <Card>
                                 {(LoginDetails && LoginDetails.id) ?
                                     <>
-                                        <CardMedia
-                                            sx={{ height: 140 }}
-                                            image={LoginDetails.photo}
-                                            title={LoginDetails.name}
+                                        <Avatar
+                                            sx={{ height: 140, width: 140, mx: 'auto', mt: 2 }}
+                                            src={LoginDetails.photo}
+                                            alt={LoginDetails.name}
                                         />
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="div">
