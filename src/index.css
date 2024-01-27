@@ -1,5 +1,12 @@
+@import './variable.css';
+
 body {
     margin: 0;
+}
+
+body::-webkit-scrollbar{
+    height: 0;
+    width: 0;
 }
 
 * {

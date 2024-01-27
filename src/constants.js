@@ -5,4 +5,4 @@ export const UserEnum = {
     PROVIDER: 3,
 };
 
-export const APP_NAME = 'App Name';
+export const APP_NAME = 'shareBite';
