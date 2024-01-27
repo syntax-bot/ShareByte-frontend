@@ -1,29 +1,50 @@
-import { Box, Card, CardActions, CardContent, Link, Skeleton, Stack, Typography } from "@mui/material";
+import { Box, Link, Skeleton, Stack, Typography } from "@mui/material";
 import { MAPS_API_KEY } from "../../constants";
 import { Map } from "@mui/icons-material";
-import { useState } from "react";
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 
 const PostMap = ({ location_lat, location_long }) => {
-    const [loading, setLoading] = useState(true);
+    // Uncomment this to use api 
+    // i have commented this to save usage
+    // const { isLoaded } = useJsApiLoader({
+    //     id: 'google-map-script',
+    //     googleMapsApiKey: MAPS_API_KEY
+    // })
+
+    const isLoaded = false;
+
+    const onLoad = (map) => {
+
+    }
 
     return (
         <Box>
-            <Box>
+            <Box sx={{ mb: 1 }}>
+                {isLoaded ?
+                    <GoogleMap
+                        mapContainerStyle={{
+                            width: '100%',
+                            height: 500,
+                        }}
+                        center={{
+                            lat: location_lat,
+                            lng: location_long,
+                        }}
+                        zoom={15}
+                        onLoad={onLoad}
+                    >
 
-                {loading &&
-                    <Skeleton variant="rounded" height={500} width="100%" sx={{ mb: 2 }} />
+                        <MarkerF
+                            position={{
+                                lat: location_lat,
+                                lng: location_long
+                            }}
+                        />
+                    </GoogleMap>
+                    :
+
+                    <Skeleton height={500} width={'100%'} variant="rounded" />
                 }
-                <iframe
-                    width={loading ? "0" : "100%"}
-                    style={{ border: 0 }}
-                    height={loading ? "0" : "500"}
-                    loading="lazy"
-                    allowfullscreen
-                    onLoad={() => {
-                        setLoading(false);
-                    }}
-                    src={`https://www.google.com/maps/embed/v1/place?key=${MAPS_API_KEY}&q=${location_lat},${location_long}`}
-                />
             </Box>
             <Box>
                 <Link target="_blank" underline="hover" href={`https://www.google.com/maps/place/${location_lat},${location_long}`}>
@@ -35,6 +56,10 @@ const PostMap = ({ location_lat, location_long }) => {
                     </Stack>
                 </Link>
             </Box>
+
+
+
+
         </Box>
     );
 }
