@@ -25,7 +25,7 @@ export class Glue {
                 .split(';')
                 .map(cookie => cookie.split('='))
                 .filter(([key, val]) => key == 'profile_json')
-                .map(([k, v]) => [k, JSON.parse(unescape(v))]);
+                .map(([k, v]) => [k, JSON.parse(decodeURIComponent(v))]);
 
             if (is_logged_filtered.length <= 0) {
                 return false;
