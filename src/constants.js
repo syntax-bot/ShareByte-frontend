@@ -8,6 +8,7 @@ export const UserEnum = {
 };
 
 export const APP_NAME = 'shareBite';
+export const MAPS_API_KEY = 'AIzaSyD8sXtZcEFEWBoyxRIEhTaGkufK8J9LbTA';
 
 export const images = {
     logo

@@ -1,9 +1,10 @@
-import { Avatar, Card, CardActions, CardContent, CardHeader, Collapse, IconButton, Typography } from '@mui/material';
+import { Avatar, Card, CardActions, CardContent, CardHeader, Collapse, IconButton, Skeleton, Stack, Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { red } from '@mui/material/colors';
 import { Favorite, KeyboardArrowDown, MoreVert, Share } from '@mui/icons-material';
 import PostImages from './PostImages';
+import PostMap from './PostMap';
 
 
 const ExpandMore = styled((props) => {
@@ -19,6 +20,67 @@ const ExpandMore = styled((props) => {
 
 
 
+
+const month_map = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+function PostHeader({ user_id, createdAt }) {
+    const [userData, setUserData] = useState(null);
+    const date = new Date(createdAt);
+
+    useEffect(() => {
+        //  Fetch User Data From user_id
+        setTimeout(() => { // emulate delay
+            setUserData({
+                "id": 1,
+                "name": "Prashanth Kumar",
+                "phone": "+91828382838",
+                "photo": "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=242&h=242&fit=crop&auto=format",
+                "bio": "A user from stonage"
+            });
+        }, 3000);
+    }, [])
+
+    return (
+        <CardHeader
+            avatar={
+                userData ?
+                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"
+                        src={userData.photo}
+                    >
+                        {userData.name[0].toUpperCase()}
+                    </Avatar>
+                    :
+                    <Skeleton variant="circular" width={40} height={40} />
+            }
+            action={
+                userData &&
+                <IconButton aria-label="settings">
+                    <MoreVert />
+                </IconButton>
+
+            }
+            title={
+                userData ?
+                    <>
+                        {userData.name}
+                    </>
+                    :
+                    <Skeleton varient="text" width={"100%"} height={20} />
+            }
+            subheader={
+                userData ?
+                    <>
+                        {
+                            month_map[date.getMonth()] + " " + (date.getDay() + 1) + ", " + date.getFullYear()
+                        }
+
+                    </>
+                    :
+                    <Skeleton varient="text" width={"100%"} height={20} />
+            }
+        />
+    )
+}
 
 function PostCard({
     id,
@@ -40,37 +102,28 @@ function PostCard({
 
     return (
         <Card style={{ margin: '10px 25px' }}>
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        R
-                    </Avatar>
-                }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVert />
-                    </IconButton>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
+
+            <PostHeader userId={{ user_id }} createdAt={createdAt} />
+
 
             <PostImages images={images} alt={title} />
 
+            <Typography variant="h6" color="text.primary" sx={{ padding: '0px 10px' }}>
+                {title}
+            </Typography >
+
+
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    This impressive paella is a perfect party dish and a fun meal to cook
-                    together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like.
-                </Typography>
-            </CardContent>
+                    {description}
+                </Typography >
+            </CardContent >
+
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
+                <IconButton aria-label="add me as hungry">
                     <Favorite />
                 </IconButton>
-                <IconButton aria-label="share">
-                    <Share />
-                </IconButton>
+
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
@@ -82,34 +135,16 @@ function PostCard({
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-                        aside for 10 minutes.
-                    </Typography>
-                    <Typography paragraph>
-                        Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-                        medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-                        occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-                        large plate and set aside, leaving chicken and chorizo in the pan. Add
-                        pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-                        stirring often until thickened and fragrant, about 10 minutes. Add
-                        saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-                    </Typography>
-                    <Typography paragraph>
-                        Add rice and stir very gently to distribute. Top with artichokes and
-                        peppers, and cook without stirring, until most of the liquid is absorbed,
-                        15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-                        mussels, tucking them down into the rice, and cook again without
-                        stirring, until mussels have opened and rice is just tender, 5 to 7
-                        minutes more. (Discard any mussels that don&apos;t open.)
-                    </Typography>
-                    <Typography>
-                        Set aside off of the heat to let rest for 10 minutes, and then serve.
-                    </Typography>
+                    <Typography paragraph>Location Map:</Typography>
+
+                    <PostMap id={id} location_lat={location_lat} location_long={location_long} />
+                    
+
+                    {/* List of helpers HERE*/}
+                    {/* List of needys HERE*/}
                 </CardContent>
             </Collapse>
-        </Card>
+        </Card >
     );
 }
 

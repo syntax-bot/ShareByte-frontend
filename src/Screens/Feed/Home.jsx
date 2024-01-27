@@ -7,9 +7,8 @@ import { Stack } from '@mui/material';
 function HomeSkeleton() {
   return (
     <>
-      Loading...
-      Skeleton...
-      Here...
+
+
     </>
   );
 }
@@ -37,8 +36,8 @@ function Home() {
         ],
         "helpers_user_id": [1],
         "needys_user_id": [1],
-        "location_lat": -80.8716,
-        "location_long": -107.7561,
+        "location_lat": 28.546714,
+        "location_long": 77.165102,
         "createdAt": "2024-01-21T09:27:28.372Z",
         "updatedAt": "2024-01-21T09:29:07.866Z",
       },
@@ -54,8 +53,8 @@ function Home() {
         ],
         "helpers_user_id": [1],
         "needys_user_id": [1],
-        "location_lat": -80.8716,
-        "location_long": -107.7561,
+        "location_lat": 28.546714,
+        "location_long": 77.165102,
         "createdAt": "2024-01-21T09:27:28.372Z",
         "updatedAt": "2024-01-21T09:29:07.866Z",
       },
@@ -69,8 +68,8 @@ function Home() {
         ],
         "helpers_user_id": [1],
         "needys_user_id": [1],
-        "location_lat": -80.8716,
-        "location_long": -107.7561,
+        "location_lat": 28.546714,
+        "location_long": 77.165102,
         "createdAt": "2024-01-21T09:27:28.372Z",
         "updatedAt": "2024-01-21T09:29:07.866Z",
       },
