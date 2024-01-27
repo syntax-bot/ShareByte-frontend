@@ -18,6 +18,22 @@ const SignupPage = () => {
   const snackbar = useSnackbar();
   const navigate = useNavigate();
 
+
+  const handleFormData = (formData) => {
+    api_glue.create_user(formData).then(res => {
+      if (res.status == 'success') {
+        snackbar.enqueueSnackbar({ message: 'User Created Successfully', variant: 'success' })
+        // Redirect the user to the home page
+        navigate('/signin');
+      } else {
+        snackbar.enqueueSnackbar({ message: res.message, variant: res.status })
+      }
+    }).catch(err => {
+      console.log(err);
+      snackbar.enqueueSnackbar({ message: error_report_message, variant: 'error' })
+    });
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -39,18 +55,17 @@ const SignupPage = () => {
     // Submit the form data to a server
 
     const formData = new FormData(event.target);
-    api_glue.create_user(formData).then(res => {
-      if (res.status == 'success') {
-        snackbar.enqueueSnackbar({ message: 'User Created Successfully', variant: 'success' })
-        // Redirect the user to the home page
-        navigate('/signin');
-      } else {
-        snackbar.enqueueSnackbar({ message: res.message, variant: res.status })
-      }
-    }).catch(err => {
-      console.log(err);
-      snackbar.enqueueSnackbar({ message: error_report_message, variant: 'error' })
-    });
+
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        formData.append('location_lat', coords.latitude);
+        formData.append('location_long', coords.longitude);
+        handleFormData(formData);
+      },
+      () => {
+        handleFormData(formData);
+      })
+
 
   };
 

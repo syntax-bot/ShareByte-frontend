@@ -26,13 +26,7 @@ function CreatePostDialog({ initialValues, handleClose, refetchPosts }) {
     }
 
 
-    const onFormSubmit = (e) => {
-        e.preventDefault();
-
-        snackbar.enqueueSnackbar("Please Wait while images are being uploaded...", { variant: "info" });
-
-        const formData = new FormData(e.target);
-
+    const handleFormData = (formData) => {
         // call api
         if (initialValues) {
             // update post
@@ -69,7 +63,25 @@ function CreatePostDialog({ initialValues, handleClose, refetchPosts }) {
                     handleClose();
                 });
         }
+    }
+
+    const onFormSubmit = (e) => {
+        e.preventDefault();
+
+        snackbar.enqueueSnackbar("Please Wait while images are being uploaded...", { variant: "info" });
+
+        const formData = new FormData(e.target);
+
+        navigator.geolocation.getCurrentPosition(({ coords }) => { // on success
+            formData.append('location_lat', coords.latitude);
+            formData.append('location_long', coords.longitude);
+            handleFormData(formData);
+        }, () => { // on failure
+            handleFormData(formData);
+        })
     };
+
+
 
 
     const handleDroppedFile = (files) => {

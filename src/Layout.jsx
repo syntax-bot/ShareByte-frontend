@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import FullSizeLoader from './components/FullSizeLoader';
 import { AppBar, Avatar, Box, Card, CardContent, CardMedia, CssBaseline, Divider, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Skeleton, Stack, ThemeProvider, Toolbar, Typography, createTheme, css } from '@mui/material';
-import { ArrowBack, Chat, Fastfood, LocationCity, Menu, Nightlight, PinDrop, Settings, WbSunny } from '@mui/icons-material';
+import { ArrowBack, Chat, Fastfood, JoinLeft, LeakRemove, LocationCity, Logout, Menu, Nightlight, Outbox, OutdoorGrill, OutletSharp, PinDrop, Settings, WbSunny } from '@mui/icons-material';
 
 import { Themes, useTheme } from './Contexts/ThemeContext';
 import { useLoader } from './Contexts/LoaderContext';
@@ -197,6 +197,17 @@ function Layout() {
                                 <ListItemText primary="Account" />
                             </ListItemButton>
 
+                            <ListItemButton onClick={() => {
+                                api_glue.logout().then(res => {
+                                    navigate('/');
+                                    setLoginDetails(null);
+                                })
+                            }}>
+                                <ListItemIcon>
+                                    <Logout />
+                                </ListItemIcon>
+                                <ListItemText primary="SignOut" />
+                            </ListItemButton>
 
 
 

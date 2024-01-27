@@ -117,7 +117,7 @@ export class Glue {
     }
 
     async get_post_by_id(id) {
-        await this.#fetch(
+        return await this.#fetch(
             'GET',
             `${this.#api_url_base}post?id=${id}`
         )

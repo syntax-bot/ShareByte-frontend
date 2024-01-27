@@ -1,24 +1,40 @@
 import { Phone } from "@mui/icons-material";
 import { Avatar, Box, Skeleton, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { api_glue } from "../../constants";
+import { useSnackbar } from "notistack";
 
 function DynamicProfile() {
     const { id } = useParams();
     const [userData, setUserData] = useState(null);
+
+    const snackbar = useSnackbar();
+
     useEffect(() => {
-
-        setTimeout(() => {
-
-            setUserData({
-                id,
-                name: 'Prashanth Kumar',
-                phone: '+9183526374633',
-                photo: 'https://api.dicebear.com/7.x/thumbs/svg?seed=Prashanth%20Kumar&radius=50&backgroundType=gradientLinear,solid&backgroundColor=164863,000000',
-                bio: 'A user from stonage',
+        api_glue
+            .get_profile_by_id(id)
+            .then(res => {
+                if (res.status == 'success') {
+                    setUserData(res.data)
+                } else {
+                    setUserData({
+                        id,
+                        name: '[User Not Found]',
+                        phone: '+91xxxxxxxxxx',
+                        photo: 'https://api.dicebear.com/7.x/thumbs/svg?seed=[Unknown User]&radius=50&backgroundType=gradientLinear,solid&backgroundColor=164863,000000',
+                        bio: '---',
+                    });
+                }
+            }).catch((err) => {
+                setUserData({
+                    id,
+                    name: '[User Not Found]',
+                    phone: '+91xxxxxxxxxx',
+                    photo: 'https://api.dicebear.com/7.x/thumbs/svg?seed=[Unknown User]&radius=50&backgroundType=gradientLinear,solid&backgroundColor=164863,000000',
+                    bio: '---',
+                });
             });
-
-        }, 3000)
 
     }, []);
     return (
