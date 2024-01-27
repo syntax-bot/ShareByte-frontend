@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Home() {
-  
+  const [postsData, setPostsData] = useState(null);
+
+  useEffect(()=>{
+    
+  },[]);
+
   return (
-    <div>Helper Login</div>
+    <div>
+
+    </div>
   )
 }
 

@@ -12,6 +12,7 @@ import { useLoader } from "./Contexts/LoaderContext";
 import { useTheme } from "./Contexts/ThemeContext";
 import About from "./Screens/MainHome/About";
 import NavBar from "./components/Navbars/NavBar";
+import { LoginProvider } from "./Contexts/LoginContext";
 // import { UserEnum } from "./constants";
 
 export default function App() {
@@ -63,10 +64,16 @@ export default function App() {
               />
             </Route>
 
-            <Route path={"/feed"} element={<Layout />}>
+
+            <Route path={"/feed"} element={
+              <LoginProvider>
+                <Layout />
+              </LoginProvider>
+            }>
               <Route index element={<Feed />} />
               <Route path="profile" element={<Dashboard />} />
             </Route>
+
           </Routes>
         </BrowserRouter>
       </CssBaseline>
