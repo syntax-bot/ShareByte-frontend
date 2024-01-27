@@ -7,11 +7,15 @@ import sliderData from "./sliderData.json";
 import { Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/swiper-bundle.css";
-
-
+import {  NavLink } from "react-router-dom";
 const AboutPage = () => {
   return (
     <div className="about-page">
+      <div className="logoOnAbout">
+        <NavLink to="/">
+          <img src="./ShareBiteLogo.png" alt="logo" width={200} />
+        </NavLink>
+      </div>
       <h1 className="about-title">About Us</h1>
       <div className="section-line">Meet the team behind the project</div>
       <br />
@@ -46,7 +50,8 @@ const AboutPage = () => {
       <br /> <br />
       {/* Swiper Slider Section */}
       <Swiper
-        modules={[Navigation,Autoplay]}
+        style={{ width: "60%" }}
+        modules={[Navigation, Autoplay]}
         spaceBetween={10}
         slidesPerView={1}
         navigation

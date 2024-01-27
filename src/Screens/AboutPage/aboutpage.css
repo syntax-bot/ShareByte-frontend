@@ -1,5 +1,10 @@
 /* aboutpage.css */
-
+.logoOnAbout{
+  position: absolute;
+  top:3%;
+  left:18%;
+  cursor: pointer;
+}
 .about-page {
   text-align: center;
   background-color: #1f1f1f;
@@ -16,10 +21,9 @@
 .section-line {
   height: 2px;
   width: 50%;
-  background-color: #0366d6;
+  color: #0366d6;
   margin: -20px auto;
   padding-bottom: 25px;
-  border-radius: 50%;
 }
 
 .card-container {
@@ -155,6 +159,11 @@
 }
 
 @media (max-width: 768px) {
+  .logoOnAbout{
+    position:relative;
+    top:0;
+    left:0;
+  }
   .card {
     width: 100%;
   }
