@@ -11,12 +11,15 @@ import App from './App.jsx'
 
 import { LoaderProvider } from './Contexts/LoaderContext.jsx'
 import { ThemeProvider } from './Contexts/ThemeContext.jsx'
+import { LoginProvider } from './Contexts/LoginContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
       <LoaderProvider>
-        <App />
+        <LoginProvider>
+          <App />
+        </LoginProvider>
       </LoaderProvider>
     </ThemeProvider>
   </React.StrictMode>,
