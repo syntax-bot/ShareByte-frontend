@@ -1,14 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './variable.css';
 
 body {
     margin: 0;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
     height: 0;
     width: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 * {
+    user-select: none;
     box-sizing: border-box;
 }

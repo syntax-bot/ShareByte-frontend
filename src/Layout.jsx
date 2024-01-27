@@ -8,8 +8,9 @@ import { ArrowBack, Chat, Fastfood, Menu, Nightlight, Settings, WbSunny } from '
 
 import { Themes, useTheme } from './Contexts/ThemeContext';
 import { useLoader } from './Contexts/LoaderContext';
-import { APP_NAME, images } from './constants';
+import { APP_NAME } from './constants';
 import { useLogin } from './Contexts/LoginContext';
+import { SnackbarProvider } from 'notistack';
 
 function Layout() {
     const [loading, setLoading] = useLoader();
@@ -26,13 +27,13 @@ function Layout() {
         // From Api
         setTimeout(() => {
             setLoginDetails({
-                id: 10,
+                id: 1,
                 name: 'My Name',
                 photo: '/banners/banner1.jpg',
                 bio: 'My Bio Here',
             });
         }, 3000);
-    },[])
+    }, [])
 
     const handleToggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
@@ -193,7 +194,9 @@ function Layout() {
                         <FullSizeLoader />
                     </Box>
                     :
-                    <Outlet />
+                    <SnackbarProvider>
+                        <Outlet />
+                    </SnackbarProvider>
                 }
             </Box>
         </div>
